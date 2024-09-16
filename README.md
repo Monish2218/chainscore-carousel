@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Image Carousel Component
 
-## Getting Started
+This project implements an Image Carousel component using React and Next.js that displays a series of slides, some of which will be locked based on user XP points. The carousel includes a nav-bar for navigation.
 
-First, run the development server:
+## Running the project locally
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+To run this project on your local machine, follow these steps:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository:
+   ```
+   git clone [repository-url]
+   cd [project-directory]
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Start the development server:
+   ```
+   npm run dev
+   ```
 
-## Learn More
+4. Open your browser and navigate to `http://localhost:3000` to view the application.
 
-To learn more about Next.js, take a look at the following resources:
+## Approach and Key Decisions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Used Embla Carousel for the main carousel functionality due to its performance and flexibility.
+- Implemented state management using Zustand for its simplicity and ease of use.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Efficient Data Fetching**: SWR (stale-while-revalidate) is used for data fetching, providing automatic caching, revalidation, and optimized performance.
 
-## Deploy on Vercel
+- **State Management**: Zustand is employed for managing local UI state, offering a simple and lightweight solution.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- The combination of Zustand for UI state and SWR for server state management provides a clean separation of concerns and efficient data handling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Performance Optimization**: Implemented lazy loading for images
+
+- Used Tailwind CSS for styling to ensure responsiveness and consistency.
+- Implemented error handling for API calls to improve user experience.
+- Implemented a dark mode toggle for the entire application using next-themes.
+
+## Challenges and Solutions
+
+- Implementing the mouse wheel scrolling required using the embla-carousel-wheel-gestures plugin to handle wheel events.
+- The shake animation for locked slides was implemented using CSS animations and Tailwind CSS.
+
+## Further Improvements
+
+- Improve accessibility by adding more ARIA attributes and ensuring full keyboard navigation.
+
+- Add more unit and integration tests for better code coverage.
+
+## Deployment
+
+The project is deployed at https://chainscore-carousel.vercel.app/.
