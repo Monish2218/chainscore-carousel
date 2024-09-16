@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
 import { Button } from "@/components/ui/button"
@@ -24,12 +24,6 @@ const Carousel = () => {
     },
     [WheelGesturesPlugin()]
   )
-
-  const onWheel = useCallback((event: WheelEvent) => {
-    if (!emblaApi) return
-    event.preventDefault()
-    emblaApi.scrollTo(emblaApi.selectedScrollSnap() + Math.sign(event.deltaX || event.deltaY))
-  }, [emblaApi])
   
   const scrollToBook = (bookNumber: number) => {
     if (emblaApi) {
@@ -52,16 +46,6 @@ const Carousel = () => {
       })
     }
   }, [emblaApi])
-
-  useEffect(() => {
-    const element = emblaRef.current
-
-    element?.addEventListener('wheel', onWheel, { passive: false })
-
-    return () => {
-      element?.removeEventListener('wheel', onWheel)
-    }
-  }, [emblaRef, onWheel])
 
   //Error Handling
   if (errors) {
